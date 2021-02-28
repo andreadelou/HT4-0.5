@@ -28,8 +28,8 @@ public class Calculadora {
                 {
                     if(!SE.empty())
                     {
-                        int num1= (int) SE.pop();
-                        int num2= (int) SE.pop();
+                        int num1=SE.pop();
+                        int num2=SE.pop();
 
                         switch (caracter)
                         {

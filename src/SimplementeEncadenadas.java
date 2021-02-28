@@ -1,13 +1,14 @@
 //Referencia: https://www.geeksforgeeks.org/data-structures/linked-list/singly-linked-list/
+//Referencia 2: Ejemplos cargados a Canvas.
 
 public class SimplementeEncadenadas <E> extends StackVector<E>{
     
     //Creando nodos y variables.
 
-    Nodo head = null;
-    Nodo sorted = null;
+    Nodo2 head = null; //Referencia al primer elemento.
+    Nodo2<E> sorted = null; //Referencia para hacer arreglos en la lista.
     
-    int val = 0; 
+    int val = 0;  //Tamaño de la lista.
 
     public SimplementeEncadenadas(){
     
@@ -19,19 +20,8 @@ public class SimplementeEncadenadas <E> extends StackVector<E>{
         
         //Verificando el último elemento del LinkedList.
 
-        if(head == null){ //Si el nodo está vacío, entonces no se regresa nada.
-            
-            System.out.println("Vacío");
-            return null;
-        }
-
-        else{
-
-            this.head = head.next; //Leyendo el valor que posee el nodo.
-
-            return (E) this.head.toString(); //Retornando el nodo sorted.
-        }
-
+        //La lista no está vacía.
+        return (E) head.valor();
          
     }
 
@@ -50,30 +40,22 @@ public class SimplementeEncadenadas <E> extends StackVector<E>{
         
         //Tamaño que posee el Vector.
         
-        return this.size(); //Retornando el tamañano del Vector.
+        return val; //Retornando el tamañano de la lista.
     }
 
     @Override
     public E pop(){
         
-        //Sacar un elemento de la lista y eliminarlo.
- 
+        //Se quitará el elemento del principio de la lista y también se retornará el mismo valor quitado.
 
-        if(head == null){//Si la lista está vacía. entonces se retorna un valor nulo.
-           
-            return null; //No se regresa nada, porque está vacío. 
+        Nodo2<E> temp = head; //Creando una variable temporal.
         
-        }else{ //Se busca el elemento a buscar y se elimina. 
 
+        head = head.next(); //Se mueve la dirección de la lista. 
 
+        val--; //El valor se reduce.
 
-            E sorted = (E) head; //Obteniendo el nodo al cual se el hará pop.
-
-            head = head.next; //Apuntando a nuevo elemento que será el que encabeza el Linked List
-
-            return sorted; //Retornando el elemento a eliminar.   
-        }
-
+        return temp.valor(); //Retornando el valor de la variable temporal.
          
     }
 
@@ -83,9 +65,7 @@ public class SimplementeEncadenadas <E> extends StackVector<E>{
         
         //Agregando el número al Vector.
 
-        Nodo h = new Nodo(num, null, null); //Asignando a la instancia el valor a introducir a la lista.
-        h.next = head; //Conectando el último valor antigüo con el nuevo asignado a la lista.
-
-        head = h; //Moviendo el puntero al nuevo nodo.
+        head = new Nodo2<E>(num, head);
+        val++; //El tamaño de la lista aumenta.
     }
 }
