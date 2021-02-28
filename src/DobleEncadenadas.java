@@ -9,8 +9,21 @@ public class DobleEncadenadas<E> extends StackVector<E> {
     Nodo head = null;
     Nodo tail = null;
     int size = 0;
+    E value;
+    Nodo next;
+    Nodo prev;
+
 
     public DobleEncadenadas() {}
+
+    /*
+    public DobleEncadenadas( E value, Nodo next, Nodo prev)
+    {
+        this.value = value;
+        this.next = next;
+        this.prev = prev;
+    }
+    */
 
     @Override
     public int size()//para saber el tamaño del stack
@@ -46,9 +59,15 @@ public class DobleEncadenadas<E> extends StackVector<E> {
         }
         else
         {
-            --this.size;
+            size--;
             E t = (E) this.head.value;
             this.head = this.head.next;//como se borra el valor de la cabeza se corre 1
+            if(this.head!=null) {
+                this.head.prev = null;
+            } else {
+                this.tail = null;
+            }
+
             return t;
         }
     }
@@ -56,12 +75,15 @@ public class DobleEncadenadas<E> extends StackVector<E> {
     @Override
     public void push(E num) //para ingresar un elemento al stack
     {
-        this.tail=this.head; //la cola toma el valor de la cabeza (temporalmente)
-        this.head= new Nodo(num,null,null);
-        this.head.value=num;//en la cabeza se pone el valor obtenido
-        this.head.next=this.tail;//el siguiente a la cabeza se ingresa el valor de la cola
-        this.head.prev=null;//a la cola se le vuelve a meter 0
-        if(this.tail !=null){ this.tail.prev=this.head;} // si la cabeza no esta vacia, al anterior a la cola se le pone el valor de la cabeza para el ordon
+        Nodo newNode = new Nodo(num, this.head, null);
+        if(this.head !=null) {
+            this.head.prev = newNode;
+        } else {
+            this.tail = newNode;
+        }
+        this.head = newNode;
 
+        size++;
     }
 }
+

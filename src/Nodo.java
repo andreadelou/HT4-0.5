@@ -11,38 +11,17 @@ public class Nodo<E> {
     public Nodo<E> next;
     public Nodo<E> prev;
 
-    public Nodo(E value, Nodo next, Nodo prev) {
-        this.next = null;
-        this.prev = null;
+    public Nodo(E value) {
         this.value = value;
     }
 
-    public E Value() {
-        return value;
-    }
-
-    public E getValue() {
-        return this.value;
-    }
-
-    public void setValue(E data) {
-        this.value= data;
-    }
-
-    public Nodo getNext() {
-        return this.next;
-    }
-
-    public void setNext(Nodo next) {
+    public Nodo(E data, Nodo next, Nodo prev) {
+        this.value = data;
         this.next = next;
-    }
-
-    public Nodo getPrev() {
-        return this.prev;
-    }
-
-    public void setPrev(Nodo prev) {
         this.prev = prev;
     }
+
+
+
 
 }

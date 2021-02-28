@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
-public class StackList<E> extends StackVector<E>{
+public class StackList<E> extends List<E>{
 
     public ArrayList<E> a;
+    int size;
 
     public StackList()
     {
@@ -12,6 +13,7 @@ public class StackList<E> extends StackVector<E>{
     @Override
     public void push(E num) {
         a.add(num);
+        size++;
     }
 
     @Override
@@ -25,6 +27,7 @@ public class StackList<E> extends StackVector<E>{
             int temp = a.indexOf(a.get(a.size() - 1));
             E value = a.get(temp);
             a.remove(value);
+            size--;
             return value;
         }
     }
@@ -39,6 +42,31 @@ public class StackList<E> extends StackVector<E>{
             int temp=a.indexOf(a.get(0));
             return a.get(temp);
         }
+    }
+
+    @Override
+    public void addF(E num) {
+
+    }
+
+    @Override
+    public void addL(E num) {
+
+    }
+
+    @Override
+    public E delF() {
+        return null;
+    }
+
+    @Override
+    public E delL() {
+        return null;
+    }
+
+    @Override
+    public boolean empty() {
+        return (size == 0);
     }
 
     @Override

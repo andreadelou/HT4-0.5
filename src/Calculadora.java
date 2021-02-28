@@ -10,9 +10,7 @@ public class Calculadora {
     //SimplementeEncadenadas
     public String CalculoSE(String a)
     {
-        
-        StackVector<E> stack = new StackVector<E>();
-
+        SimplementeEncadenadas<Integer> SE = new SimplementeEncadenadas<Integer>();
         try
         {
             for (int i=0; i<a.length(); i++)
@@ -22,47 +20,39 @@ public class Calculadora {
                 //comparar si es un numero o un operador
                 if(numeros.contains(String.valueOf(caracter))) //si es un numero
                 {
-                    stack.push(Character.getNumericValue(caracter)); //se guarda en el stack
-
-                    Nodo primer = new Nodo(Character.getNumericValue(caracter)); //Instanciando con el caracter que se colocará en la lista.
-
-
+                    //stack.push(Character.getNumericValue(caracter)); //se guarda en el stack
+                    SE.push(Character.getNumericValue(caracter)); //Haciendo push del caracter a la lista simplemente encadenada.
 
                 }
                 else
                 {
-                    if(!stack.empty())
+                    if(!SE.empty())
                     {
-                        int num1=stack.pop();
-                        int num2=stack.pop();
+                        int num1= (int) SE.pop();
+                        int num2= (int) SE.pop();
 
                         switch (caracter)
                         {
                             case '+':
                                 //stack.pop();
-                                stack.push(num1 + num2);
-                                SE segundo = new SE(num1 + num2); //Haciendo el nodo con la suma.
-                                primer.enlazarSiguiente(segundo);
+                                //stack.push(num1 + num2);
+                                SE.push(num1 + num2); //Haciendo el nodo con la suma.
                                 break;
                             case '-':
                                 //stack.pop();
-                                stack.push(num1 - num2);
-
-                                SE tercero = new SE(num1 - num2); //Haciendo el nodo con la resta.
-                                primer.obtenerSiguiente().enlazarSiguiente(tercero); //Enlazando al tercer nodo con el primero y el segundo.
+                                //stack.push(num1 - num2);
+                                SE.push(num1 - num2); //Haciendo el nodo con la resta.
                                 break;
                             case '*':
                                 //stack.pop();
-                                stack.push(num1 * num2);
-                                SE cuarto = new SE(num1 * num2); //Creando un cuarto nodo.
-                                primer.obtenerSiguiente().enlazarSiguiente(cuarto); //Enlazando el primer nodo, con el segundo y con el tercero.
+                                //stack.push(num1 * num2);
+                                SE.push(num1 * num2);
                                 break;
                             case '/':
                                 //stack.pop();
-                                stack.push(num1 / num2);
+                                //stack.push(num1 / num2);
+                                SE.push(num1/num2);
                                 break;
-                            SE quinto = new SE(num1/num2); //Creando un quinto nodo
-                            primer.obtenerSiguiente().enlazarSiguiente(quinto); //Enlazando el primer nodo, con el segundo, con el tercero y con el cuarto.
                             default:
                                 System.out.println("A ocurrido un error en el ingreso de datos");
                                 System.out.println("Porfavor no divida dentro de 0");
@@ -78,7 +68,7 @@ public class Calculadora {
         }
 
 
-        String resultado= String.valueOf(stack.peek()) ;
+        String resultado= String.valueOf(SE.peek());
         return resultado;
 
 
